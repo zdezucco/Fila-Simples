@@ -24,14 +24,13 @@ int  enfileirar(int x, int fila[TAM], int *tras){
     }
 }
 
-int  desenfileirar( int fila[TAM], int *tras){
-	int x;
-	int frente;
+int  desenfileirar( int fila[TAM], int x, int *tras, int frente){
     if(*tras == 0){
         printf("Erro: Fila Vazia!");
     }else{
         x = fila[frente];
         frente += 1;
+        *tras -= 1;
     }
 }
 
@@ -70,9 +69,9 @@ int main(){
     printfila(x, fila);
     enfileirar(40, fila, &tras);
     printfila(x, fila);
-    desenfileirar(fila, &tras);
+    desenfileirar(fila, x, &tras, frente);
     printfila(x, fila);
-    desenfileirar(fila, &tras);
+    desenfileirar(fila, x, &tras, frente);
     printfila(x, fila);
     enfileirar(31, fila, &tras);
     printfila(x, fila);
