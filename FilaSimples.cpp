@@ -1,40 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <conio.h>
 #define TAM 5
 
-int TornaVazia(int fila[TAM], int frente, int *tras){
+void TornaVazia(int fila[TAM], int frente, int *tras){
     frente = 0;
     *tras = frente;
 }
 
-int  VerifVazia(int fila[TAM], int frente, int *tras){
-    if (frente = *tras){
-        return true;
-        printf("Erro: Fila Vazia!");
+void  VerifVazia(int fila[TAM], int frente, int *tras){
+    if (frente == *tras){
+        printf("Erro: Fila Vazia!\n");
     }else{
-        return false;
-        printf("Fila Não está vazia!!");
+        printf("Fila NAO esta vazia!!\n");
     }  
 }
 
-int  enfileirar(int x, int fila[TAM], int *tras){
+void  enfileirar(int x, int fila[TAM], int *tras){
     if (*tras== TAM){
-        printf("Erro: Fila Cheia!");
+        printf("Erro: Fila Cheia!\n");
     }else{
         fila[*tras] = x;
-        *tras += 1;
+        *tras = *tras + 1;
     }
 }
 
-int  desenfileirar( int fila[TAM], int x, int *tras, int frente){
-    if(*tras == 0){
-        printf("Erro: Fila Vazia!");
+void  desenfileirar( int fila[TAM], int *tras, int *frente){
+    if(tras == 0){
+        printf("Erro: Fila Vazia!\n");
     }else{
-        x = fila[frente];
-        frente += 1;
-        *tras -= 1;
+    	fila[*frente] = 0;
+    	*frente += 1;
+    	*tras -= 1;
     }
 }
 
-int  printfila(int x, int fila[TAM]){
+void  printfila(int x, int fila[TAM]){
     printf("\n") ;
 
     for(int i = 0; i < TAM; i++){
@@ -43,35 +45,35 @@ int  printfila(int x, int fila[TAM]){
     printf("\n");
 }
 
-int  filaCheia(int fila[TAM], int frente, int *tras){
+void  filaCheia(int fila[TAM], int frente, int *tras){
     if(*tras == TAM){
-        printf("FILA CHEIA!!");
+        printf("Fila CHEIA!!\n");
     }else{
-        printf("Fila NÃO está cheia!");
+        printf("Fila NAO esta cheia!\n");
     }
 }
 
 int main(){
     int fila[TAM] = {0,0,0,0,0};
     int frente = 0;
-    int tras = 0;
+    int tras = -1;
     int x = 0;
     
 
     TornaVazia(fila, frente, &tras);
-    VerifVazia(fila, frente, &tras);
     printfila(x, fila);
+    VerifVazia(fila, frente, &tras);
     enfileirar(10, fila, &tras);
     printfila(x, fila);
     enfileirar(20, fila, &tras);
     printfila(x, fila);
     enfileirar(30, fila, &tras);
     printfila(x, fila);
-    enfileirar(40, fila, &tras);
+    desenfileirar(fila, &tras, &frente);
     printfila(x, fila);
-    desenfileirar(fila, x, &tras, frente);
+    desenfileirar(fila, &tras, &frente);
     printfila(x, fila);
-    desenfileirar(fila, x, &tras, frente);
+    desenfileirar(fila, &tras, &frente);
     printfila(x, fila);
     enfileirar(31, fila, &tras);
     printfila(x, fila);
@@ -79,9 +81,12 @@ int main(){
     printfila(x, fila);
     enfileirar(51, fila, &tras);
     printfila(x, fila);
-    VerifVazia(fila, frente, &tras);
     filaCheia(fila, frente, &tras);
+    enfileirar(61, fila, &tras);
     printfila(x, fila);
+    enfileirar(71, fila, &tras);
+    printfila(x, fila);
+    filaCheia(fila, frente, &tras);
 
 
 }
